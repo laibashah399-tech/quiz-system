@@ -1,3 +1,4 @@
 <h1>Welcome to Our App</h1>
 
 // my new project 
+// This is a simple welcome page for the application.
