@@ -35,7 +35,13 @@ class AdminController extends Controller
     function dashboard(){
 
          $admin = Session::get('admin');    
-         return view('admin',["name"=>$admin->name]);
+         if($admin){
+
+             return view('admin',["name"=>$admin->name]);
+         }else{
+        return redirect('admin-login');
+
+         }
 
 
     }
