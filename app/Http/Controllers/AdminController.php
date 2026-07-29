@@ -3,17 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Models\Admin;
 
 class AdminController extends Controller
 {
     public function login(Request $request)
     {
+
+        $validation = $request->validate([
+            'name' => 'required',
+            'password' => 'required'
+        ]);
         $admin = Admin::where([
 
-            ['name', "=", $request->admin_name],
-            ['password', "=", $request->admin_password]
+            ['name', "=", $request->name],
+            ['password', "=", $request->password]
         ])->first();
-        return $admin;
+
+        if (!$admin) 
+      $validation = $request->validate([
+            'user' => 'required'
+        ],[
+            'user.required'=>'User does not exist'
+        ]);
+
+        Session::put('admin',$admin);    
+        return redirect('dashboard');
+    }
+
+    function dashboard(){
+
+         $admin = Session::get('admin');    
+         return view('admin',["name"=>$admin->name]);
+
+
     }
 }
