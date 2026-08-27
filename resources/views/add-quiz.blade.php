@@ -18,7 +18,7 @@
           <form action="/add-quiz" method="get" class="space-y-4">
             
             <div>
-                <input type="text" placeholder="Enter Quiz name" name="quiz"  class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none">
+                <input type="text" placeholder="Enter Quiz name" required name="quiz"  class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none">
         
             </div>
                
@@ -35,29 +35,68 @@
          <button type="submit" class="bg-blue-500 w-full text-white py-2 px-4 rounded-xl hover:bg-blue-600">Add</button>
         </form>
         @else
-        <span class="text-green-500 font-bold">Quiz:{{session('quizDetails')->name}}</span>
+        <span class="text-green-500 font-bold">Quiz : {{session('quizDetails')->name}}</span>
+        <p class="text-green-500 font-bold">Total MCQs : {{$totalMCQs}}
+            @if ($totalMCQs>0)
+            <a class="text-yellow-500 text-sm" href="/show-quiz/{{session('quizDetails')->id}}">Show MCQs</a>
+            @endif
+        </p>
         <h2 class="text-2xl text-center text-gray-800 mb-6"> Add MCQs </h2>
         <form action="add-mcq" method="post" class="space-y-4">
          <div>
                 @csrf
-                <textarea type="text" placeholder="Enter Quiz your question" name="question"  class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none"></textarea>
+                <textarea type="text" placeholder="Enter your question" name="question"  class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none"></textarea>
+             @error('question')
+             <div class="text-red-500">
+                {{$message}}
+             </div>
+                 
+             @enderror
         
             </div> 
 
             <div>
                 <input type="text" placeholder="Enter first option" name="a"  class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none">
+
+                @error('a')
+             <div class="text-red-500">
+                {{$message}}
+             </div>
+                 
+             @enderror
             </div>
 
              <div>
                 <input type="text" placeholder="Enter second option" name="b" class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none">
+
+                @error('b')
+             <div class="text-red-500">
+                {{$message}}
+             </div>
+                 
+             @enderror
             </div>
 
              <div>
                 <input type="text" placeholder="Enter third option" name="c"  class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none">
+
+                @error('c')
+             <div class="text-red-500">
+                {{$message}}
+             </div>
+                 
+             @enderror
             </div> 
 
             <div>
                 <input type="text" placeholder="Enter fourth option" name="d"  class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none">
+
+                @error('d')
+             <div class="text-red-500">
+                {{$message}}
+             </div>
+                 
+             @enderror
             </div>
 
 
@@ -69,11 +108,20 @@
                     <option value="c">C</option>
                     <option value="d">D</option>
                 </select>
+
+                @error('correct_ans')
+             <div class="text-red-500">
+                {{$message}}
+             </div>
+                 
+             @enderror
             </div>
 
-         <button type="submit" name="submit" value="add-more" class="bg-blue-500 w-full text-white py-2 px-4 rounded-xl hover:bg-blue-600">Add More</button>
+         <button type="submit" name="submit" value="add-more" class="bg-blue-500 w-full text-white py-2 px-4 rounded-xl ">Add More</button>
          
-         <button type="submit" name="submit" value="done" class="bg-green-500 w-full text-white py-2 px-4 rounded-xl hover:bg-blue-600">Add and Submit</button>
+         <button type="submit" name="submit" value="done" class="bg-green-500 w-full text-white py-2 px-4 rounded-xl">Add and Submit</button>
+
+         <a class="bg-red-500 w-full block text-center text-white py-2 px-4 rounded-xl" href="/end-quiz">Finish Quiz</a>
         </form>
         @endif
     </div>
