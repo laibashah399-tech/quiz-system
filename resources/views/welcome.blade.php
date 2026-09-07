@@ -37,7 +37,7 @@
           <ul class="flex justify-between">
             <li class="w-30"> {{ $key+1}} </li>
             <li class="w-70"> {{ $category->name }} </li> 
-            <li class="w-30"> {{ $category->quizzes_count}} </li>
+            <li class="w-70"> {{ $category->quizzes_count}} </li>
              <li class="w-30 flex items-center gap-1">
               
                 <a href="/user-quiz-list/{{ $category->id }}/{{ $category->name }}">

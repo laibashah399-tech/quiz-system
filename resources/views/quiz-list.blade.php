@@ -8,7 +8,7 @@
 
 </head>
 <body>
-   <x-navbar ></x-navbar>
+   <x-navbar > name={{$name}}</x-navbar>
   
     <div class="bg-gray-100 flex flex-col items-center min-h-screen pt-5">
   
