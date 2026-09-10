@@ -22,7 +22,7 @@
           <ul class="flex justify-between">
             <li class="w-30">Quiz Id</li>
             <li class="w-110">Name</li>
-            <li class="w-130">Mcq Count</li>
+            <li class="w-30">Mcq Count</li>
             <li class="w-30">Actions</li>
 
          </ul>
@@ -32,7 +32,7 @@
           <ul class="flex justify-between">
             <li class="w-30"> {{ $item->id }} </li>
             <li class="w-110"> {{ $item->name }} </li>
-            <li class="w-130"> {{ $item->mcqs_count }} </li>
+            <li class="w-30"> {{ $item->mcqs_count }} </li>
              <li class="w-30 flex items-center gap-1">
     
                 <a href="/start-quiz/{{ $item->id }}/{{ $item->name }}" class="text-green-500 font-bold">

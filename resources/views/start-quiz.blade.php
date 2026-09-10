@@ -19,8 +19,16 @@
 
         <h3 class="text-2xl text-center text-green-800 mb-6 font-bold">Good Luck!</h3>
 
-         <a type="submit" href="/user-signup" class="bg-green-500  text-white py-2 my-5 px-4 rounded-md hover:bg-green-800">Login/Signup to start quiz</a>
+        @if(session('user'))
 
+
+            <a type="submit" href="/mcq/{{ session('firstMCQ') }}/{{ $quizName }}" class="bg-green-500  text-white py-2 my-5 px-4 rounded-md hover:bg-green-800"> Start Quiz</a>
+         @else
+         <a type="submit" href="/user-signup-quiz" class="bg-green-500  text-white py-2 my-5 px-4 rounded-md hover:bg-green-800">Signup to start quiz</a>
+
+          <a type="submit" href="/user-login-quiz" class="bg-green-500  text-white py-2 my-5 px-4 rounded-md hover:bg-green-800">Login to start quiz</a>
+
+            @endif
 
 
 </div>
