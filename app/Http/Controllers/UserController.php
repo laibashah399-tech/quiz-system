@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\Quiz;
 use App\Models\Mcq;
 use App\Models\User;
+use App\Models\Record;
+
 
 
 
@@ -36,7 +38,7 @@ class UserController extends Controller
     function startQuiz($id,$name){
         $quizcount=Mcq::where('quiz_id',$id)->count();
         $mcqs=Mcq::where('quiz_id',$id)->get();
-        session::put('firstMCQ',$mcqs[0]->id);
+        Session::put('firstMCQ',$mcqs[0]->id);
         
 
         $quizName=$name;
@@ -107,8 +109,66 @@ class UserController extends Controller
         return view('user-login');
      }
 
-     function mcq($id,$name){
-     return view('mcq-page');
+function mcq($id, $name)
+{
+    $firstMCQ = Mcq::find(Session::get('firstMCQ'));
+
+    $record = new Record();
+
+    $record->user_id = Session::get('user')->id;
+    $record->quiz_id = $firstMCQ->quiz_id;
+    $record->status = 1;
+
+    if ($record->save()) {
+
+        $currentQuiz = [];
+
+        $currentQuiz['totalMcq'] = Mcq::where(
+            'quiz_id',
+            $firstMCQ->quiz_id
+        )->count();
+
+        $currentQuiz['currentMcq'] = 1;
+        $currentQuiz['quizName'] = $name;
+        $currentQuiz['quizId'] = $firstMCQ->quiz_id;
+
+        Session::put('currentQuiz', $currentQuiz);
+
+        $mcqData = Mcq::find($id);
+
+        return view('mcq-page', [
+            'quizName' => $name,
+            'mcqData' => $mcqData
+        ]);
+
+    } else {
+
+        return "something wents wrong";
+    }
+}
+
+          function submitAndNext($id){
+            $currentQuiz=Session::get('currentQuiz');
+            $currentQuiz['currentMcq'] += 1;
+            $mcqData=Mcq::where([
+                ['id','>',$id],
+                ['quiz_id','=',$currentQuiz['quizId']]
+            ])->first();
+
+    Session::put('currentQuiz', $currentQuiz);
+      
+    if($mcqData){
+          return view('mcq-page', [
+        'quizName' => $currentQuiz['quizName'],
+        'mcqData' => $mcqData
+    ]);
+    }
+     else{
+        return "result page";
+     }
+            
+         }
+
 
    }
-}
+
