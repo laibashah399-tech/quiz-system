@@ -1,4 +1,4 @@
-<footer class="bg-gray-800 text-white py-6">
+<footer class="bg-green-900 text-white py-6">
     <div class="container mx-auto text-center">
         <p>&copy; {{ date('Y') }} Quiz System. All rights reserved.</p>
     </div>

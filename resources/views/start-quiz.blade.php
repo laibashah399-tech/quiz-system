@@ -10,7 +10,7 @@
 <body>
    <x-user-navbar ></x-user-navbar>
   
-    <div class="bg-gray-100 flex flex-col items-center min-h-screen pt-5">
+    <div class="bg-green-100 flex flex-col items-center min-h-screen pt-5">
   
         <h1 class="text-4xl text-center text-green-800 mb-6 font-bold">  {{ $quizName }}  
              
@@ -22,7 +22,7 @@
         @if(session('user'))
 
 
-            <a type="submit" href="/mcq/{{ session('firstMCQ') }}/{{ $quizName }}" class="bg-green-500  text-white py-2 my-5 px-4 rounded-md hover:bg-green-800"> Start Quiz</a>
+            <a type="submit" href="/mcq/{{ session('firstMCQ')->id }}/{{ $quizName }}" class="bg-green-500  text-white py-2 my-5 px-4 rounded-md hover:bg-green-800"> Start Quiz</a>
          @else
          <a type="submit" href="/user-signup-quiz" class="bg-green-500  text-white py-2 my-5 px-4 rounded-md hover:bg-green-800">Signup to start quiz</a>
 

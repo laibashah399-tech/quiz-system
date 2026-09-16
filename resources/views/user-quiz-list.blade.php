@@ -10,7 +10,7 @@
 <body>
    <x-user-navbar ></x-user-navbar>
   
-    <div class="bg-gray-100 flex flex-col items-center min-h-screen pt-5">
+    <div class="bg-green-100 flex flex-col items-center min-h-screen pt-5">
   
         <h2 class="text-2xl text-center text-green-800 mb-6 font-bold"> Category Name : {{ $category }}  
              

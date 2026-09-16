@@ -8,5 +8,6 @@
 </head>
 <body>
    <x-navbar name="{{ $name }}"></x-navbar>
+   <div class="bg-blue-100"></div>
 </body>
 </html>

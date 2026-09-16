@@ -8,7 +8,7 @@
 </head>
 <body>
    <x-navbar name="{{ $name }}" ></x-navbar>
-    <div class="bg-gray-100 flex flex-col items-center min-h-screen pt-5">
+    <div class="bg-blue-100 flex flex-col items-center min-h-screen pt-5">
     <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         
        @if(!session('quizDetails'))

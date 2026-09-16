@@ -9,7 +9,7 @@
 </head>
 <body>
     <x-user-navbar></x-user-navbar>
- <div class="flex flex-col min-h-screen items-center bg-gray-100">
+ <div class="flex flex-col min-h-screen items-center bg-green-100">
     <h1 class="text-3xl font-bold text-green-900 p-5 ">TEST YOUR KNOWLEDGE AND CHALLENGE YOURSELF WITH OUR QUIZZES.</h1>
 
     <div class="w-full max-w-md">
