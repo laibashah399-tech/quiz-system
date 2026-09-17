@@ -192,7 +192,27 @@ if ($mcqData) {
         'mcqData' => $mcqData
     ]);
 } else {
-    return "result page";
+    $resultData=MCQ_Record::WithMcq()->where('record_id',$currentQuiz['recordId'])->get();
+    $correctAnswers=MCQ_Record::where([
+        ['record_id', '=' ,$currentQuiz['recordId']],
+        ['is_correct', '=',1],
+        
+        ])->count();
+
+        $record = Record::find($currentQuiz['recordId']);
+        if ($record){
+            $record->status=2;
+            $record->update();
+        }
+
+    return view('quiz-result',['resultData' => $resultData, 'correctAnswers'=>$correctAnswers]);
 }
     }
+
+
+    function userDetails(){
+        $quizRecord = Record::WithQuiz()->where('user_id',Session::get('user')->id)->get();
+        return view('user-details',['quizRecord'=>$quizRecord]);
+    }
+    
 }

@@ -10,7 +10,7 @@
             <a class="text-white hover:text-green-300" href="/">Home</a>
             <a class="text-white hover:text-green-300" href="/admin-categories">Categories</a>
             @if(Session::has('user'))
-            <a class="text-white hover:text-green-300" href="/">Welcome {{ session::get('user')->name }}</a>
+            <a class="text-white hover:text-green-300" href="/user-details">Welcome {{ session::get('user')->name }}</a>
             <a class="text-white hover:text-green-300" href="/user-logout">Logout</a>
             @else
               <a class="text-white hover:text-green-300" href="/user-signup">Signup</a>

@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Categories Page</title>
+    @vite('resources/css/app.css')
+
+</head>
+<body>
+    <x-user-navbar></x-user-navbar>
+ <div class="flex flex-col min-h-screen items-center bg-green-100">
+    <h1 class="text-3xl font-bold text-green-900 p-5 ">QUIZ RESULT.</h1>
+
+  
+    <div class="w-200 ">
+        <h1 class="text-2xl  font-semibold text-green-900 text-center my-5 mt-2">{{$correctAnswers}} out of {{count($resultData)}} Correct</h1>
+       <ul class="border-4">
+         <li class="p-2 font-bold">
+          <ul class="flex justify-between">
+            <li class="w-30">S.No</li>
+            <li class="w-70">Questions</li>  
+            <li class="w-70">Result</li>  
+            
+
+         </ul>
+        </li>
+           @foreach($resultData as $key=>$item)
+        <li class="even:bg-gray-200 p-2">
+          <ul class="flex justify-between">
+            <li class="w-30"> {{ $key+1}} </li>
+            <li class="w-70"> {{ $item->question }} </li>
+
+            @if($item->is_correct)
+            <li class="w-70 text-blue-700"> Correct </li>
+            @else
+            <li class="w-70 text-red-500"> Incorrect </li>
+            @endif
+             
+            </ul>
+        </li>
+        @endforeach
+       </ul>
+    </div>
+</div>
+
+ </div>
+ <x-footer-user></x-footer-user>       
+</body>
+
